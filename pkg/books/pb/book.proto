@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "./";
+
+
+service BookServices {
+    rpc FetchBookByID(BookID) returns(BookModel);
+    rpc FetchBookByName(BookName) returns (BookModel);
+    rpc FetchAllBooks(NoParam) returns (BookList);
+}
+
+
+message NoParam{}
+
+message BookModel {
+    string book_name = 1;
+    string author = 2;
+    uint32 no_of_copies = 3;
+    string year = 4;
+    string publications = 5;
+    string category = 6;
+    string description = 7; 
+}
+
+message BookResponse {
+    string status = 1;
+    string error = 2;
+    string message = 3;
+}
+
+message BookID {
+    uint32 id = 1;
+}
+
+message BookName {
+    string name = 1;
+}
+
+message BookList {
+    repeated BookModel books = 1;
+}
